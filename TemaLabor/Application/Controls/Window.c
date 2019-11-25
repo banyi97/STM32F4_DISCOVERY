@@ -61,9 +61,9 @@ uint8_t IsDrawRequired(Window* w)
 		w->NeedToDraw |= w->Histogram.NeedToDraw;
 	if (w->SpectrumActive > 0)
 		w->NeedToDraw |= w->Spectrum.NeedToDraw;
-
+	// Game draw req
 	if (w->GameActive > 0)
-			w->NeedToDraw |= w->Game.NeedToDraw;
+		w->NeedToDraw |= w->Game.NeedToDraw;
 
 	return w->NeedToDraw;
 }
@@ -99,7 +99,7 @@ uint8_t DrawWindow(Window* w)
 		DrawSpectrum(&w->Spectrum);
 	// Game drawing
 	if (w->GameActive > 0)
-			DrawGame(&w->Game);
+		DrawGame(&w->Game);
 
 	w->NeedToDraw = 0;
 	w->DrawInProgress = 0;

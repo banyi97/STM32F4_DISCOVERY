@@ -40,8 +40,11 @@ void InitGame(Game* c){
 
 void DrawGame(Game* c){
 	c->NeedToDraw = 0;
-	// Print or remove menu btn
+	// Print menu btn
 	Window* win = GetGameWindow();
+	if(c->IsGameOver == 1){
+			win->ButtonsNum = 1;
+	}
 
 	// Print game area
 	Pixel p;
@@ -49,9 +52,6 @@ void DrawGame(Game* c){
 	p.y = 0;
 	DRV_DrawRectangle(p, AREA_HEIGHT, AREA_WIDTH, black);
 
-	if(c->IsGameOver == 1){
-		win->ButtonsNum = 1;
-	}
 	// Print bullet
 	DRV_FillCircle(c->BulletPosition, BULLET_R, black);
 
@@ -90,7 +90,7 @@ void UpdateGameData(Game* c, int32_t val){
 		return;
 	if(dataState == 0){ // omega_x
 		int16_t y = c->BulletPosition.y;
-		y -= val / 9500;
+		y -= val / GYRO_CORRECTOR;
 		if(y - BULLET_R < 0){
 			y = BULLET_R;
 		}
@@ -103,7 +103,7 @@ void UpdateGameData(Game* c, int32_t val){
 	}
 	else if(dataState == 1){ // omega_y
 		int16_t x = c->BulletPosition.x;
-		x += val / 9500;
+		x += val / GYRO_CORRECTOR;
 		if(x - BULLET_R < 0){
 			x = BULLET_R;
 		}
@@ -124,12 +124,15 @@ void UpdateGameData(Game* c, int32_t val){
 				c->IsGameOver = 1;
 				Window* win = GetGameWindow();
 				win->Buttons[0].NeedToDraw = 1;
-				break;
+				return;
 			}
 		}
 
 		if(catchTargetIsInBullet(&c->BulletPosition, &c->TargetPosition) == 0){
 			++c->Level;
+			if(c->Level > 99){
+				c->Level = 99;
+			}
 			uint8_t level = c->Level / 4;
 			c->EnemiesNum = level > 15 ? 15 : level;
 			Pixel p;

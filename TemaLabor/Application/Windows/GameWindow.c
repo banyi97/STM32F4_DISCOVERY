@@ -27,7 +27,7 @@ void InitGameWindow()
 	GameWindow.ButtonsNum = 1;
 	Button* GameBtn = &GameWindow.Buttons[0];
 	GameBtn->OnClick = &MenuButtonOnClick;
-	strcpy(GameBtn->Label.Label, "Go menu");
+	strcpy(GameBtn->Label.Label, "Go to menu");
 	GameBtn->Size.x = 150;
 	GameBtn->Size.y = 30;
 	GameBtn->Position.x = DRV_Display_GetXSize()/2 - GameBtn->Size.x/2;
