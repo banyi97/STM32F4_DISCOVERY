@@ -116,6 +116,8 @@ void UpdateGameData(Game* c, int32_t val){
 	else if(dataState == 2){ // omega_z
 		// Set print flag
 		c->NeedToDraw = 1;
+		// Set next state
+		dataState = 0;
 		// Cntr time
 		++c->Tik;
 		// Check bullet and enemies contact
@@ -151,7 +153,6 @@ void UpdateGameData(Game* c, int32_t val){
 				c->Enemies[i].y = p.y;
 			}
 		}
-		dataState = 0;
 	}
 }
 
