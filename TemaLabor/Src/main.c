@@ -88,6 +88,7 @@ int main(void)
 			HandleCompass(gyroVal.omega_z);
 			HandleHistogram(gyroVal.omega_z);
 			HandleGame(gyroVal);
+			HandleBlockGame(gyroVal);
 		}
 
 		//DataPacket d;

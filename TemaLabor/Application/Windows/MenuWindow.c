@@ -14,6 +14,7 @@
 #include <string.h>
 
 #include "Game.h"
+#include "Blocks.h"
 
 Window MenuWindow;
 
@@ -23,6 +24,7 @@ static void ConsoleButtonOnClick(void* args, uint32_t argsN);
 static void HistogramButtonOnClick(void* args, uint32_t argsN);
 static void SpectrumButtonOnClick(void* args, uint32_t argsN);
 static void GameButtonOnClick(void* args, uint32_t argsN);
+static void BlocksGameButtonOnClick(void* args, uint32_t argsN);
 
 Window* GetMenuWindow()
 {
@@ -49,13 +51,13 @@ void InitMenuWindow()
 	ConsoleBtn->Position.x = DRV_Display_GetXSize()/2 - ConsoleBtn->Size.x/2;
 	ConsoleBtn->Position.y = 150;
 
-	Button* CompassBtn = &MenuWindow.Buttons[1];
-	CompassBtn->OnClick = &CompassButtonOnClick;
-	strcpy(CompassBtn->Label.Label, "Compass Window");
-	CompassBtn->Size.x = 180;
-	CompassBtn->Size.y = 30;
-	CompassBtn->Position.x = DRV_Display_GetXSize()/2 - CompassBtn->Size.x/2;
-	CompassBtn->Position.y = 200;
+	Button* BlockBtn = &MenuWindow.Buttons[1];
+	BlockBtn->OnClick = &BlocksGameButtonOnClick;
+	strcpy(BlockBtn->Label.Label, "Block game");
+	BlockBtn->Size.x = 180;
+	BlockBtn->Size.y = 30;
+	BlockBtn->Position.x = DRV_Display_GetXSize()/2 - BlockBtn->Size.x/2;
+	BlockBtn->Position.y = 200;
 
 	Button* ChartBtn = &MenuWindow.Buttons[2];
 	ChartBtn->OnClick = &ChartButtonOnClick;
@@ -116,3 +118,9 @@ static void GameButtonOnClick(void* args, uint32_t argsN)
 {
 	SetActiveWindow(GetGameWindow());
 }
+
+static void BlocksGameButtonOnClick(void* args, uint32_t argsN)
+{
+	SetActiveWindow(GetBlocksWindow());
+}
+

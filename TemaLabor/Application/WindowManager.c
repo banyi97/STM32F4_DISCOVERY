@@ -15,6 +15,7 @@
 #include "SpectrumWindow.h"
 
 #include "GameWindow.h"
+#include "BlocksWindow.h"
 
 Window* ActiveWindow = 0;
 
@@ -32,6 +33,7 @@ void InitWindowManager(void)
 	InitSpectrumWindow();
 
 	InitGameWindow();
+	InitBlocksWindow();
 
 	//Set startup window
 	SetActiveWindow(GetSetupWindow());
@@ -135,6 +137,18 @@ void HandleGame(gyro_t data){
 	}
 }
 
+void HandleBlockGame(gyro_t data){
+	DataPacket d[3];
+	d[0].Data = data.omega_x;
+	d[1].Data = data.omega_y;
+	d[2].Data = data.omega_z;
+	if ((ActiveWindow != 0) && (!ActiveWindow->DrawInProgress))
+	{
+		if (ActiveWindow->BlocksActive > 0)
+			ActiveWindow->Blocks.OnNewData(&d,3);
+	}
+}
+
 void HandleNewData(DataPacket* d)
 {
 	if ((ActiveWindow != 0) && (!ActiveWindow->DrawInProgress))
@@ -150,6 +164,8 @@ void HandleNewData(DataPacket* d)
 		//
 		if (ActiveWindow->GameActive > 0)
 			ActiveWindow->Game.OnNewData(d,1);
+		if (ActiveWindow->BlocksActive > 0)
+			ActiveWindow->Blocks.OnNewData(d,1);
 	}
 }
 

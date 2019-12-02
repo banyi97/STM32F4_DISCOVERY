@@ -62,7 +62,7 @@ void DrawGame(Game* c){
 	uint32_t allsec = c->Tik / 100;
 	uint16_t min = allsec / 60;
 	uint8_t sec = allsec - (min*60);
-	sprintf(time, "Level:%d Time:%02d:%02d",c->Level, min, sec);
+	sprintf(time, "Level:%02d Time:%02d:%02d",c->Level, min, sec);
 	DRV_Display_WriteStringAt(p, time, ALIGN_Right);
 
 	// Print target
@@ -116,6 +116,8 @@ void UpdateGameData(Game* c, int32_t val){
 	else if(dataState == 2){ // omega_z
 		// Set print flag
 		c->NeedToDraw = 1;
+		// Set next state
+		dataState = 0;
 		// Cntr time
 		++c->Tik;
 		// Check bullet and enemies contact
@@ -151,7 +153,6 @@ void UpdateGameData(Game* c, int32_t val){
 				c->Enemies[i].y = p.y;
 			}
 		}
-		dataState = 0;
 	}
 }
 

@@ -54,4 +54,6 @@ void HandleSpectrum(float data);
 
 void HandleGame(gyro_t data);
 
+void HandleBlockGame(gyro_t data);
+
 #endif /* WINDOWMANAGER_WINDOWMANAGER_H_ */

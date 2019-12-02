@@ -40,6 +40,9 @@ void InitWindow(Window* w)
 
 	if (w->GameActive > 0)
 		InitGame(&w->Game);
+
+	if (w->BlocksActive > 0)
+		InitBlockGame(&w->Blocks);
 }
 
 uint8_t IsDrawRequired(Window* w)
@@ -64,6 +67,9 @@ uint8_t IsDrawRequired(Window* w)
 	// Game draw req
 	if (w->GameActive > 0)
 		w->NeedToDraw |= w->Game.NeedToDraw;
+	// Block game draw req
+	if (w->BlocksActive > 0)
+		w->NeedToDraw |= w->Blocks.NeedToDraw;
 
 	return w->NeedToDraw;
 }
@@ -100,6 +106,8 @@ uint8_t DrawWindow(Window* w)
 	// Game drawing
 	if (w->GameActive > 0)
 		DrawGame(&w->Game);
+	if (w->BlocksActive > 0)
+		DrawBlockGame(&w->Blocks);
 
 	w->NeedToDraw = 0;
 	w->DrawInProgress = 0;

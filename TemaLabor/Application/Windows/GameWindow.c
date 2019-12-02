@@ -50,7 +50,6 @@ void InitGameWindow()
 
 static void MenuButtonOnClick(void* args, uint32_t argsN)
 {
-	GameWindow.ButtonsNum = 0;
 	SetActiveWindow(GetMenuWindow());
 }
 

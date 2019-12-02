@@ -16,6 +16,7 @@
 #include "Spectrum.h"
 
 #include "Game.h"
+#include "Blocks.h"
 
 typedef struct
 {
@@ -34,8 +35,11 @@ typedef struct
 	Spectrum	Spectrum;
 	uint8_t		SpectrumActive;
 
+	// Games
 	Game		Game;
 	uint8_t		GameActive;
+	Blockgame	Blocks;
+	uint8_t 	BlocksActive;
 
 	uint8_t		NeedToDraw;
 	uint8_t		DrawInProgress;
