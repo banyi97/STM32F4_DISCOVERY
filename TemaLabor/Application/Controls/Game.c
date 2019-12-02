@@ -41,9 +41,9 @@ void InitGame(Game* c){
 void DrawGame(Game* c){
 	c->NeedToDraw = 0;
 	// Print menu btn
-	Window* win = GetGameWindow();
 	if(c->IsGameOver == 1){
-			win->ButtonsNum = 1;
+		Window* win = GetGameWindow();
+		win->ButtonsNum = 1;
 	}
 
 	// Print game area
@@ -124,8 +124,6 @@ void UpdateGameData(Game* c, int32_t val){
 		for(uint8_t i = 0; i < c->EnemiesNum; ++i){
 			if(catchBulletIsInEnemie(&c->BulletPosition, &c->Enemies[i]) == 0){
 				c->IsGameOver = 1;
-				Window* win = GetGameWindow();
-				win->Buttons[0].NeedToDraw = 1;
 				return;
 			}
 		}
