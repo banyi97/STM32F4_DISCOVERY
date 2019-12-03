@@ -10,9 +10,11 @@
 
 #include "BasicControls.h"
 
-#define BULLET_A 5
-#define BLOCK_HEIGHT 20			//5 sor blokk 175-275-ig
-#define BLOCK_WIDTH 30			//egy sorban 8 blokk
+#define BULLET_A 6
+#define NUM_OF_ROWS 10			//sorok száma
+#define NUM_OF_COLS 8			//oszlopok száma
+#define BLOCK_HEIGHT 10			//blokkok magassága (blokkok 175-275-ig)
+#define BLOCK_WIDTH 30			//blokkok szélessége (0 - 240)
 #define TOP_LINE 275			//blokkok teteje
 #define BOTTOM_LINE 175			//blokkok alja
 #define BAR_LENGTH 60
@@ -22,7 +24,7 @@
 
 typedef struct
 {
-	Color		color;
+	uint32_t	color;
 	uint8_t		isActive;
 } Block;
 
@@ -47,7 +49,7 @@ typedef struct
 	//Data
 	uint8_t		Remaining;
 	uint8_t		IsGameOver;
-	Block		Blocks[8][4];
+	Block		Blocks[NUM_OF_COLS][NUM_OF_ROWS];
 	Pixel		BulletPosition;
 	Speed		BulletSpeed;
 	Pixel		BarPosition;

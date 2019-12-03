@@ -79,7 +79,7 @@ int main(void)
 		}
 
 		if (generateSignal){
-			float dftTestSignal = 1000 * sin(2 * M_PI * 1 * HAL_GetTick()/1000.0f) + 1000 * sin(2 * M_PI * 8 * HAL_GetTick()/1000.0f);
+			float dftTestSignal = 0; //1000 * sin(2 * M_PI * 1 * HAL_GetTick()/1000.0f) + 1000 * sin(2 * M_PI * 8 * HAL_GetTick()/1000.0f);
 			DataPacket d;
 			d.Data = dftTestSignal; //gyroVal.omega_z;
 			HandleSpectrum(dftTestSignal);
